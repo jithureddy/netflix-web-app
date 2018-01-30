@@ -147,7 +147,7 @@ header {
 section.app-section {
     display: flex;
     margin-top: 85px;
-    height: 100%;
+    height: calc(100vh - 80px);
     flex: 1 1 auto;
     margin-top: 70px;
     flex-direction: row;
