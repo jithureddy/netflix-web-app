@@ -1,4 +1,7 @@
-NETFLIX.categories1 = [];
+/**
+ * categories.js
+ * Sample data 
+ */
 NETFLIX.categories = [
     {
         "name": "TV Shows",

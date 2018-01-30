@@ -13,12 +13,13 @@
     var LIST = 'list';
     var CARD_CSS_CLASS = 'card';
 
+    /**
+     * @name loadCategories
+     * @description This function loads the categories from node end point and parses the
+     * response to store categories into window global object
+     * @param {function} callback 
+     */
     function loadCategories(callback) {
-        //Here need to load the data from localstorage first otherwise need to load 
-        //from api then store in local storage
-        //after which we need to start render the list of categories 
-        //Here construct the category object with label and url + genre code
-        //call the callback argument
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
@@ -36,7 +37,6 @@
                             genre = {};
                             genre = constructGenre(genersList, cats);
                             count++;
-                            console.log(cats[0] + cats[1]);
                         }
                         else if (count > 0) {
                             constructCategories(genre, cats);
@@ -46,17 +46,21 @@
                 });
                 if (callback && typeof callback === 'function') {
                     hideLoadingBar();
+                    NETFLIX.categories = genersList;
                     callback(genersList);
                 }
             }
         };
-        //var url = "http://anyorigin.com/go?url=" + encodeURIComponent("http://whatsonnetflix.com/netflix-hacks/the-netflix-id-bible-every-category-on-netflix/");
-        //  xhttp.open("GET", url, true);
         xhttp.open("GET", "https://netflix-web-app.herokuapp.com/api/getCategories", true);
         xhttp.send();
-
     }
 
+    /**
+     * @name constructGenre
+     * @description This function creates a object for genre with empty categories list
+     * @param {array} genersList 
+     * @param {array} categories 
+     */
     function constructGenre(genersList, categories) {
         var genre = {
             'name': categories[1],
@@ -67,6 +71,12 @@
         return genre;
     }
 
+    /**
+     * @name constructCategories
+     * @description This function forms categories for each genre
+     * @param {object} genre 
+     * @param {*} categories 
+     */
     function constructCategories(genre, categories) {
         var category = {
             'name': categories[1],
@@ -75,10 +85,14 @@
         genre.categories.push(category);
     }
 
+    /**
+     * @name renderCategoryList
+     * @description This function create the DOM elements dynamically for each category and
+     * render them at specified node element on the page.
+     * Also constructs URL for each category so that user can navigate to netflix website in new tab
+     * @param {array} categories 
+     */
     function renderCategoryList(categories) {
-        //get the content container id to display list
-        //repeat the category list and construct category object 
-        //create dynamic nodes for category label and link which opens in new tab with specified url
         var categoryListContainer = getElementById('appCategoriesList');
         if (categories && categories.length > 0) {
             categoryListContainer.classList.remove('show-no-categories-message');
@@ -94,18 +108,35 @@
         }
     }
 
-    function filterCategoryList(filterText, filterType) {
+    /**
+     * @name filterCategoryList
+     * @description This funciton is going to take filter text as your types in to filter the categories
+     * @param {string} filterText 
+     */
+    function filterCategoryList(filterText) {
         //put validation for filter text and type 
         //call the app utils filter to get the results and re render the categoryList
         //Also consider clearing the category if the previous filter search happens
         //var filteredCategories = NETFLIX.filterList(filterText, filterType);
         //renderCategoryList(filteredCategories);
+        //TODO
     }
 
+    /**
+     * @name getElementById
+     * @description This function takes input id and returns DOM node.
+     * @param {string} elementId 
+     */
     function getElementById(elementId) {
         return document.getElementById(elementId);
     }
 
+    /**
+     * @name getCategoriesListNode
+     * @description This function adds specified list of css classes to a categories parent list node and returns the same.
+     * @param {array} classes 
+     * @returns {DOM element} ulNode
+     */
     function getCategoriesListNode(classes) {
         var ulNode = document.createElement('DIV');
         if (classes && classes.length) {
@@ -116,6 +147,13 @@
         return ulNode;
     }
 
+    /**
+     * @name getLisItemNode
+     * @description This function gives the DOM node for either genre or category
+     * If genre has categories then it will be self invoked to create the child nodes
+     * @param {*} category 
+     * @param {*} type 
+     */
     function getLisItemNode(category, type) {
         var liNode = document.createElement('DIV');
         liNode.classList.add(type);
@@ -145,6 +183,13 @@
         return liNode;
     }
 
+    /**
+     * @name addClassesToNode
+     * @description This function adds specified list of css classes to a particular DOM element node
+     * @param {DOM element} node 
+     * @param {array} classes 
+     */
+    
     function addClassesToNode(node, classes) {
         if (classes && classes.length > 0) {
             classes.forEach(function (cssClass) {
@@ -153,6 +198,11 @@
         }
     }
 
+    /**
+     * @name getGenreCategoryLink
+     * @description This function create anchor tag to be able to browse by genre or category in netflix
+     * @param {object} category 
+     */
     function getGenreCategoryLink(category) {
         var linkNode = document.createElement('A');
         var linkText = document.createTextNode(category.name);
@@ -161,43 +211,39 @@
         linkNode.classList.add('category-genre-link');
         linkNode.appendChild(linkText);
         return linkNode;
-    }
+    }   
 
-    function getExpandCollapseIcon(isExpandCollapse) {
-        var expandCollapseContainer = document.createElement('DIV');
-        expandCollapseContainer.classList.add('expand-collapse-container');
-        var expandCollapseIcon = document.createElement('I');
-        expandCollapseIcon.classList.add('collapsed-icon');
-        expandCollapseContainer.appendChild(expandCollapseIcon);
-        if (isExpandCollapse) {
-            registerClickEventForExpandCollapse(expandCollapseContainer);
-        }
-
-        return expandCollapseContainer;
-    }
-
-    function registerClickEventForExpandCollapse(expandCollapseNode) {
-        expandCollapseNode.addEventListener('click', function () {
-            this.parentNode.classList.toggle('active');
-            var panel = this.parentNode.nextElementSibling;
-            if (panel.style.display === 'block') {
-                panel.style.display = 'none';
-            } else {
-                panel.style.display = 'block';
-            }
-        });
-    }
-
-    function hideLoadingBar(){
-        var loadingBarNode = document.getElementById('appLoadBar');
+    /**
+     * @name hideLoadingBar
+     * @description This function will be triggered to remove the dummy loading category boxe after the data is loaded
+     */
+    function hideLoadingBar() {
+        var loadingBarNode = getElementById('appLoadBar');
         loadingBarNode.classList.add('hide-loading-bar');
     }
 
-    function showLoadingBar(){
-        var loadingBarNode = document.getElementById('appLoadBar');
+    /**
+     * @name showLoadingBar
+     * @description This function is used to show the dummy category boxes while page is rendering
+     */
+    function showLoadingBar() {
+        var loadingBarNode = getElementById('appLoadBar');
         loadingBarNode.classList.remove('hide-loading-bar');
     }
 
+    /**
+     * @name registerFilterEvent
+     * @description This function register the keyup event for search box to filter the categories
+     */
+    function registerFilterEvent() {
+        var searchInputNode = getElementById('searchInput');
+        searchInputNode.onkeyup = function (event) {
+            console.log(searchInputNode.value);
+            filterCategoryList(searchInputNode.value);
+        };
+    }
+
+    registerFilterEvent();
 
     // Create the global object that all shared data goes on
     window.NETFLIX = {
