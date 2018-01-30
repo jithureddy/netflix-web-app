@@ -67,6 +67,9 @@ header, section, footer {
     flex-direction: row;
     -webkit-box-direction: normal;
 }
+.column {
+    flex-direction: column;
+}
 .align-center {
     align-items: center;
     align-content: center space-between; 
@@ -113,6 +116,12 @@ header {
 .header-content .app-netflix-logo {
     height: 100%
 }
+.header-content .app-netflix-logo a {
+    text-decoration: none;
+}
+.header-content .app-netflix-logo a:focus {
+    border: none;
+}
 .header-content .app-header-title {
     font-size: 30px;
     color: #FFFFFF;
@@ -122,9 +131,6 @@ header {
     height: 100%;
     background: url('../assets/newnetflix.png') no-repeat;
     background-position-x: -20px;
-}
-.header-content .app-search-container {
-
 }
 .app-search-input-container {
     height: 50px;
@@ -138,7 +144,8 @@ header {
     color: rgba(0,0,0,.54);
     border: none;
     outline: none;
-    width: 87%;
+    /*width: 87%;*/
+    width: 95%;
     font-size: 20px;
     border-radius: 2px;
 }
@@ -158,7 +165,6 @@ section.app-section {
     height: calc(100vh - 80px);
     flex: 1 1 auto;
     margin-top: 70px;
-    flex-direction: row;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -168,6 +174,7 @@ section.app-section {
     padding: 0 4%;
 }
 .no-records-found-container {
+    text-align: center;
     font-size: 40px;
     color: #FFFFFF;
     font-weight: 600;
@@ -239,7 +246,7 @@ i.collapsed-icon {
 /* MEDIA QUERIES*/
 @media screen and (min-width: 1500px)
 {
-    .header-content, .app-categories-list-container{
+    .header-content, .app-categories-list-container, .app-load-bar-container{
         padding: 0 60px;
     }
 }
@@ -332,3 +339,55 @@ and add css style to each category box*/
     background-color: #375E97;
 }
 /*COLLERE PALLETE END*/
+
+/* LOAD BAR CSS*/
+.app-load-bar-container {
+    padding: 0 4%;
+}
+.dummy-category-background {
+    background: transparent;
+    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+    border-radius: 5px;
+    padding: 12px;
+    margin: 0 auto;
+    width: 100%;
+    min-height: 70px;
+    margin-bottom: 10px;
+    opacity: 1;
+    transition: opacity ease-out .3s;
+}
+.hide-loading-bar {
+    opacity: 0;
+    display: none;
+}
+@keyframes placeHolderShimmer {
+    0% {
+        background-position: -468px 0
+    }
+    100% {
+        background-position: 468px 0
+    }
+}
+.dummy-category {
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background: #6C6C6C;
+    background: linear-gradient(to right, #818181 8%, #888787 18%, #7c7b7b 33%);
+    background-size: 800px 104px;
+    position: relative;
+    border-radius: 5px;
+}
+.dummy-category-dimensions {
+    width:200px;
+    height: 100px;
+    margin-right: 5px;
+}
+.dummy-category-title {
+    width: 150px;
+    height: 25px;
+    margin-bottom: 20px;
+}
+/* LOAD BAR CSS*/

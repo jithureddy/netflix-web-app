@@ -45,6 +45,7 @@
                     }
                 });
                 if (callback && typeof callback === 'function') {
+                    hideLoadingBar();
                     callback(genersList);
                 }
             }
@@ -185,6 +186,16 @@
                 panel.style.display = 'block';
             }
         });
+    }
+
+    function hideLoadingBar(){
+        var loadingBarNode = document.getElementById('appLoadBar');
+        loadingBarNode.classList.add('hide-loading-bar');
+    }
+
+    function showLoadingBar(){
+        var loadingBarNode = document.getElementById('appLoadBar');
+        loadingBarNode.classList.remove('hide-loading-bar');
     }
 
 
