@@ -62,14 +62,25 @@ header, section, footer {
 .row {
     display: flex;
     flex-direction: row;
+    -webkit-box-direction: normal;
 }
-.algin-center {
+.align-center {
     align-items: center;
-    align-content: center space-between;
-    /*justify-content: center;*/
+    align-content: center space-between; 
+}
+.align-center-center {
+    justify-content: center;
+    align-items: center;
+    flex-grow: inherit !important;
 }
 .space-between > * {
     flex: 1 1 0%;
+}
+.layout-wrap {
+    flex-wrap: wrap;
+}
+.box {
+
 }
 /*HEADER - START*/
 
@@ -145,11 +156,12 @@ section.app-section {
 }
 
 .app-categories-list-container {
-    width: 90%
+    width: 100%;
+    padding: 0 4%;
 }
 .no-records-found-container {
     font-size: 40px;
-    color: #404040;
+    color: #FFFFFF;
     font-weight: 600;
     transition: opacity ease-in .5s;
     opacity: 0;
@@ -170,28 +182,27 @@ section.app-section {
     padding: 10px 10px 10px 20px;
     border-radius: 2px;
 }
-li a {
+
+.genre .list-item-content {
+    color: #e5e5e5;
+    padding: 10px 10px 10px 0;
+    font-weight: 700;
+    font-size: 1.4vw;
+}
+
+.app-categories-list-container a {
     text-decoration: none;
-    color: #000000;
+    color: #FFFFFF;
     font-size: 20px;
 }
-li a:hover {
-    text-decoration: underline;
-    text-decoration-color: #404040;
-}
-ul.genrelist li:nth-child(odd) .list-item-content {
-    background-color: #C6C6C6;
-}
-ul.genrelist li:nth-child(even) .list-item-content  { background-color:#FFFFFF; }
-
-ul.categorylist{
-    padding-bottom: 10px;
+.app-categories-list-container a:hover {
+    font-size: 20px;
 }
 
-li:nth-child(odd) ul li:nth-child(odd) .list-item-content  { background-color:#FFFFFF; }
-li:nth-child(odd) ul li:nth-child(even) .list-item-content { background-color:#C6C6C6; }
-li:nth-child(even) ul li:nth-child(odd) .list-item-content  { background-color:#C6C6C6; }
-li:nth-child(even) ul li:nth-child(even) .list-item-content { background-color:#FFFFFF; }
+.category {
+    min-width: 250px;
+    height: 100px;
+}
 
 .expand-collapse-container {
     width: 10px;
@@ -215,8 +226,75 @@ i.collapsed-icon {
 /* MEDIA QUERIES*/
 @media screen and (min-width: 1500px)
 {
-    .header-content {
+    .header-content, .app-categories-list-container{
         padding: 0 60px;
     }
 }
 /*MEDIA QUERIES*/
+
+/*COLOR PALLETTE START - we can also define array in global object with HEX values for colors
+and add css style to each category box*/
+.color-0 {
+    background-color: #5BC8AC;
+}
+.color-1 {
+    background-color: #E57373;
+}
+.color-2 {
+    background-color:#F06292;
+}
+.color-3 {
+    background-color:#7B1FA2;
+}
+.color-4 {
+    background-color: #3F51B5;
+}
+.color-5 {
+    background-color: #5E35B1;
+}
+.color-6 {
+    background-color: #039BE5;
+}
+.color-7 {
+    background-color: #00ACC1;
+}
+.color-8 {
+    background-color: #00897B;
+}
+.color-9 {
+    background-color: #388E3C;
+}   
+.color-10 {
+    background-color: #558B2F;
+}
+.color-11 {
+    background-color: #757575;
+}
+.color-12 {
+    background-color: #546E7A;
+}
+.color-13 {
+    background-color: #F98866;
+}
+.color-14 {
+    background-color: #FF420E;
+}
+.color-15 {
+    background-color: #80BD9E;
+}
+.color-16 {
+    background-color: #90AFC5;
+}
+.color-17 {
+    background-color: #2A3132;
+}
+.color-18 {
+    background-color: #66A5AD;
+}
+.color-19 {
+    background-color: #2C7873;
+}
+.color-20 {
+    background-color: #375E97;
+}
+/*COLLERE PALLETE END*/

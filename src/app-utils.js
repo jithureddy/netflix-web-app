@@ -13,9 +13,14 @@
         //This will read categories data from local storage 
     }
 
+    function getRandomNumber(){
+        return Math.floor(Math.random() * 20);
+    }
+
     NETFLIX.filterList = filterList;
     NETFLIX.setCategoriesData = setCategoriesData;
     NETFLIX.getCategotiesData = getCategotiesData;
+    NETFLIX.getRandomNumber = getRandomNumber;
     NETFLIX.CATEGORY_BROWSE_URL = 'https://www.netflix.com/browse/genre/';
 
 })();

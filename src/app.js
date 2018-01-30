@@ -23,9 +23,9 @@
         var categoryListContainer = getElementById('appCategoriesList');
         if (categories && categories.length > 0) {
             categoryListContainer.classList.remove('show-no-categories-message');
-            var listNode = getUnordedListNode([TYPE_GENRE + LIST]);
+            var listNode = getCategoriesListNode([TYPE_GENRE + LIST]);
             categories.forEach(function (category) {
-                var listItemNode = getLisItemNode(category, TYPE_GENRE, true);
+                var listItemNode = getLisItemNode(category, TYPE_GENRE);
                 listNode.appendChild(listItemNode);
             });
             categoryListContainer.appendChild(listNode);
@@ -47,8 +47,8 @@
         return document.getElementById(elementId);
     }
 
-    function getUnordedListNode(classes) {
-        var ulNode = document.createElement('UL');
+    function getCategoriesListNode(classes) {
+        var ulNode = document.createElement('DIV');
         if (classes && classes.length) {
             classes.forEach(function (cssClass) {
                 ulNode.classList.add(cssClass);
@@ -57,27 +57,22 @@
         return ulNode;
     }
 
-    function getLisItemNode(category, type, isExpandCollapse) {
-        var liNode = document.createElement('LI');
+    function getLisItemNode(category, type) {
+        var liNode = document.createElement('DIV');
         liNode.classList.add(type);
         var listItemContentNode = document.createElement('DIV');
         listItemContentNode.classList.add('list-item-content');
-        listItemContentNode.classList.add('row')
-        
+        listItemContentNode.classList.add('row');
+
         var nestedList = null;
-
         if (category.categories && category.categories.length > 0) {
-
-            var expandCollapseNode = getExpandCollapseIcon(isExpandCollapse);
-            listItemContentNode.appendChild(expandCollapseNode);
-
-            nestedList = getUnordedListNode([TYPE_CATEGORY + LIST, CARD_CSS_CLASS]);
-            nestedList.style.display = 'none';
+            nestedList = getCategoriesListNode([TYPE_CATEGORY + LIST, CARD_CSS_CLASS, 'row', 'layout-wrap', 'space-between']);
             category.categories.forEach(function (category) {
-                var listItemNode = getLisItemNode(category, TYPE_CATEGORY, false);
+                var listItemNode = getLisItemNode(category, TYPE_CATEGORY);
+                var randomNumber = NETFLIX.getRandomNumber();
+                addClassesToNode(listItemNode, ['row', 'align-center-center', 'color-'+randomNumber]);
                 nestedList.appendChild(listItemNode);
             });
-
         }
 
         var linkNode = getGenreCategoryLink(category);
@@ -90,6 +85,14 @@
         }
 
         return liNode;
+    }
+
+    function addClassesToNode(node, classes) {
+        if (classes && classes.length > 0) {
+            classes.forEach(function (cssClass) {
+                node.classList.add(cssClass);
+            });
+        }
     }
 
     function getGenreCategoryLink(category) {
