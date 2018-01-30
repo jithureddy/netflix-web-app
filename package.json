@@ -1,0 +1,25 @@
+{
+  "name": "netflix-web-app",
+  "version": "1.0.0",
+  "description": "This repo is used for the web to show genres and categories of netflix",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jithureddy/netflix-web-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jithureddy/netflix-web-app/issues"
+  },
+  "homepage": "https://github.com/jithureddy/netflix-web-app#readme",
+  "dependencies": {
+    "body-parser": "1.18.2",
+    "express": "4.16.2"
+  }
+}
