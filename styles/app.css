@@ -200,7 +200,9 @@ section.app-section {
 }
 
 .category {
-    min-width: 250px;
+    /*min-width: 350px;*/
+    min-width: 10%;
+    padding: 10px 50px 10px 50px;
     height: 100px;
 }
 
@@ -228,6 +230,11 @@ i.collapsed-icon {
 {
     .header-content, .app-categories-list-container{
         padding: 0 60px;
+    }
+}
+@media screen and (min-width: 1400px) {
+    .category {
+        min-width: 10%;
     }
 }
 /*MEDIA QUERIES*/

@@ -1,3 +1,11 @@
+/**
+ * app.js
+ * This script file will be loaded and define the main window object 
+ * and also attaches below function to it.
+ * 1. loadCategories 
+ * 2. renderCategoryList
+ * 3. filterCategoryList
+ */
 (function () {
     'use strict';
     var TYPE_GENRE = 'genre';
@@ -11,9 +19,59 @@
         //after which we need to start render the list of categories 
         //Here construct the category object with label and url + genre code
         //call the callback argument
-        if (callback && typeof callback === 'function') {
-            callback(NETFLIX.categories);
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var htmlObject = document.createElement('div');
+                htmlObject.innerHTML = this.responseText;
+                var count = 0;
+                var genersList = [];
+                var genre = {};
+                htmlObject.querySelectorAll('.wpb_wrapper p').forEach(function (data) {
+                    if (data.innerHTML.indexOf(' = ') != -1) {
+                        var cats = data.innerText.split(' = ');
+                        //Here I have hardcoded the codes for genre so that I can form proper object to render the UI
+                        if (NETFLIX.GENRE_CODES.indexOf(cats[0]) > -1) {
+                            count = 0;
+                            genre = {};
+                            genre = constructGenre(genersList, cats);
+                            count++;
+                            console.log(cats[0] + cats[1]);
+                        }
+                        else if (count > 0) {
+                            constructCategories(genre, cats);
+                            count++;
+                        }
+                    }
+                });
+                if (callback && typeof callback === 'function') {
+                    callback(genersList);
+                }
+            }
+        };
+        //var url = "http://anyorigin.com/go?url=" + encodeURIComponent("http://whatsonnetflix.com/netflix-hacks/the-netflix-id-bible-every-category-on-netflix/");
+        //  xhttp.open("GET", url, true);
+        xhttp.open("GET", "http://localhost:3000/api/getCategories", true);
+        xhttp.send();
+
+    }
+
+    function constructGenre(genersList, categories) {
+        var genre = {
+            'name': categories[1],
+            'id': categories[0],
+            'categories': []
         }
+        genersList.push(genre);
+        return genre;
+    }
+
+    function constructCategories(genre, categories) {
+        var category = {
+            'name': categories[1],
+            'id': categories[0]
+        }
+        genre.categories.push(category);
     }
 
     function renderCategoryList(categories) {
@@ -70,7 +128,7 @@
             category.categories.forEach(function (category) {
                 var listItemNode = getLisItemNode(category, TYPE_CATEGORY);
                 var randomNumber = NETFLIX.getRandomNumber();
-                addClassesToNode(listItemNode, ['row', 'align-center-center', 'color-'+randomNumber]);
+                addClassesToNode(listItemNode, ['row', 'align-center-center', 'color-' + randomNumber]);
                 nestedList.appendChild(listItemNode);
             });
         }

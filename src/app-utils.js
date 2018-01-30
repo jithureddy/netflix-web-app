@@ -13,7 +13,7 @@
         //This will read categories data from local storage 
     }
 
-    function getRandomNumber(){
+    function getRandomNumber() {
         return Math.floor(Math.random() * 20);
     }
 
@@ -22,5 +22,6 @@
     NETFLIX.getCategotiesData = getCategotiesData;
     NETFLIX.getRandomNumber = getRandomNumber;
     NETFLIX.CATEGORY_BROWSE_URL = 'https://www.netflix.com/browse/genre/';
+    NETFLIX.GENRE_CODES = ['1365', '7424', '783', '31574', '6548', '6839', '5763', '7462', '8711', '1701', '8883', '1492', '4370', '8933', '83']
 
 })();
