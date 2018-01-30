@@ -1,8 +1,9 @@
+const express = require('express');
+const app = express();
 const path = require('path');
 const http = require('http');
-const express = require('express');
 const bodyParser = require('body-parser');
-const app = express();
+const port = process.env.PORT || 3000;
 const index = path.join(__dirname + '/index.html');
 const externalSite = 'http://whatsonnetflix.com/netflix-hacks/the-netflix-id-bible-every-category-on-netflix/';
 
@@ -49,4 +50,4 @@ app.get('/api/getCategories', function (request,response) {
     }
 });
 
-app.listen(3000, function () { console.log('Listening on ' + 3000) });
+app.listen(port, function () { console.log('Listening on ' + `${port}`) });
