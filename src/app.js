@@ -127,8 +127,7 @@
             nestedList = getCategoriesListNode([TYPE_CATEGORY + LIST, CARD_CSS_CLASS, 'row', 'layout-wrap', 'space-between']);
             category.categories.forEach(function (category) {
                 var listItemNode = getLisItemNode(category, TYPE_CATEGORY);
-                var randomNumber = NETFLIX.getRandomNumber();
-                addClassesToNode(listItemNode, ['row', 'align-center-center', 'color-' + randomNumber]);
+                addClassesToNode(listItemNode, ['row', 'align-center-start', 'color-box']);
                 nestedList.appendChild(listItemNode);
             });
         }

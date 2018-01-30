@@ -9,6 +9,9 @@ html, body {
     overflow: hidden;
 }
 /* COMMON CSS*/
+a:focus {
+    border: 3px solid #e2e2e2;
+}
 body ::-webkit-scrollbar {
     width: 12px;
     height: 12px;
@@ -73,6 +76,11 @@ header, section, footer {
     align-items: center;
     flex-grow: inherit !important;
 }
+.align-center-start {
+    justify-content: start;
+    align-items: center;
+    flex-grow: inherit !important;
+}
 .space-between > * {
     flex: 1 1 0%;
 }
@@ -130,7 +138,7 @@ header {
     color: rgba(0,0,0,.54);
     border: none;
     outline: none;
-    width: 100%;
+    width: 87%;
     font-size: 20px;
     border-radius: 2px;
 }
@@ -194,6 +202,7 @@ section.app-section {
     text-decoration: none;
     color: #FFFFFF;
     font-size: 20px;
+    padding: 5px;
 }
 .app-categories-list-container a:hover {
     font-size: 20px;
@@ -204,6 +213,8 @@ section.app-section {
     min-width: 10%;
     padding: 10px 50px 10px 50px;
     height: 100px;
+    margin-right: 5px;
+    margin-bottom: 5px;
 }
 
 .expand-collapse-container {
@@ -241,6 +252,22 @@ i.collapsed-icon {
 
 /*COLOR PALLETTE START - we can also define array in global object with HEX values for colors
 and add css style to each category box*/
+.color-box {
+    background-color: #6C6C6C;
+}
+.color-box:hover {
+    background-color: #E57373;
+    box-shadow: 0px 0px 150px #000000;
+    z-index: 2;
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(1.5);
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(1.5);   
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(1.5);
+    transition: all 200ms ease-in;
+    transform: scale(1.1);
+}
 .color-0 {
     background-color: #5BC8AC;
 }
