@@ -51,7 +51,7 @@
         };
         //var url = "http://anyorigin.com/go?url=" + encodeURIComponent("http://whatsonnetflix.com/netflix-hacks/the-netflix-id-bible-every-category-on-netflix/");
         //  xhttp.open("GET", url, true);
-        xhttp.open("GET", "http://localhost:3000/api/getCategories", true);
+        xhttp.open("GET", "https://netflix-web-app.herokuapp.com/api/getCategories", true);
         xhttp.send();
 
     }
