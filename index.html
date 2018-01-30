@@ -11,11 +11,13 @@
 
 <body>
     <header>
-        <div class="header-content margin-auto-center">
-            <h1 class="app-header-title">NetFlix</h1>
+        <div class="header-content row align-center space-between">
+            <div class="app-netflix-logo">
+                <div class="app-header-title"></div>
+            </div>
             <div class="app-search-container">
-                <div class="app-search-input-container">
-                    <img class="search-icon" src="./assets/app-search.svg"></img>
+                <div class="app-search-input-container row align-center">
+                    <img class="search-icon" alt="search icon" src="./assets/app-search.svg"></img>
                     <input type="text" id="searchInput" class="search-input" placeholder="Search">
                 </div>
             </div>
@@ -24,12 +26,12 @@
     <section class="app-section">
         <div id="appCategoriesList" class="app-categories-list-container margin-auto-center margin-top-20 margin-bottom-20">
             <div class="no-records-found-container">
-                    No categories found...!
+                No categories found...!
             </div>
         </div>
     </section>
     <footer>
-        
+
     </footer>
     <script src="src/app.js"></script>
     <script src="data/categories.js"></script>

@@ -3,8 +3,9 @@ html, body {
     min-height: 100%;
     margin: 0;
     padding:0;
-    font-family: sans-serif;
-    background-color: rgba(255, 255, 255); 
+    background: #141414;
+    color: #fff;
+    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
     overflow: hidden;
 }
 /* COMMON CSS*/
@@ -15,8 +16,8 @@ body ::-webkit-scrollbar {
 }
 body ::-webkit-scrollbar-thumb {
     border: 2px solid transparent;
-    -webkit-box-shadow: inset 0 0 0 24px rgba(0,0,0,.37);
-    box-shadow: inset 0 0 0 24px rgba(0,0,0,.37);
+    -webkit-box-shadow: inset 0 0 0 24px rgba(238, 234, 234, 0.829);
+    box-shadow: inset 0 0 0 24px rgba(247, 244, 244, 0.808);
     border-radius: 24px;
 }
 .margin-auto-center {
@@ -61,47 +62,71 @@ header, section, footer {
 .row {
     display: flex;
     flex-direction: row;
+    -webkit-box-direction: normal;
+}
+.align-center {
+    align-items: center;
+    align-content: center space-between; 
+}
+.align-center-center {
+    justify-content: center;
+    align-items: center;
+    flex-grow: inherit !important;
+}
+.space-between > * {
+    flex: 1 1 0%;
+}
+.layout-wrap {
+    flex-wrap: wrap;
+}
+.box {
+
 }
 /*HEADER - START*/
 
 header {
     /*background-color: #2d323e;*/
-    background-color: #558c89;
+    background-color: #000000;
     z-index: 2;
     position: fixed;
     top:0;
-    min-height: 85px;
+    min-height: 68px;
+    height: 68px;
     display: flex;
     box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
 }
 .header-content {
     color: rgba(0,0,0,.87)!important;
-    padding: 5px;
-    width: 90%;
+    width: 100%;
+    padding: 0 4%;
     display: flex;
     flex-direction: row;
-    align-items: center;
-    align-content: center space-between;
+}
+.header-content .app-netflix-logo {
+    height: 100%
 }
 .header-content .app-header-title {
     font-size: 30px;
     color: #FFFFFF;
-    width: 20%;
+    margin-top: -20px;
+    width: 320px;
+    zoom: .5;
+    height: 100%;
+    background: url('../assets/newnetflix.png') no-repeat;
+    background-position-x: -20px;
 }
 .header-content .app-search-container {
-    flex: auto;
+
 }
 .app-search-input-container {
-    max-width: 640px;
-    height: 56px;
-    line-height: 56px;
-    padding: 18px;
-    display: flex;
+    height: 50px;
+    line-height: 50px;
+    padding: 5px;
     position: relative;
 }
 .search-input {
-    height: 56px;
-    padding-left: 16px;
+    height: 50px;
+    padding-left: 40px;
     color: rgba(0,0,0,.54);
     border: none;
     outline: none;
@@ -112,9 +137,8 @@ header {
 .search-icon {
     background-repeat: no-repeat;
     display: inline-block;
-    fill: currentColor;
-    height: 24px;
-    width: 24px;
+    height: 35px;
+    width: 35px;
     position: absolute;
 }
 /*HEADER - END*/
@@ -132,11 +156,12 @@ section.app-section {
 }
 
 .app-categories-list-container {
-    width: 90%
+    width: 100%;
+    padding: 0 4%;
 }
 .no-records-found-container {
     font-size: 40px;
-    color: #404040;
+    color: #FFFFFF;
     font-weight: 600;
     transition: opacity ease-in .5s;
     opacity: 0;
@@ -157,27 +182,27 @@ section.app-section {
     padding: 10px 10px 10px 20px;
     border-radius: 2px;
 }
-li a {
+
+.genre .list-item-content {
+    color: #e5e5e5;
+    padding: 10px 10px 10px 0;
+    font-weight: 700;
+    font-size: 1.4vw;
+}
+
+.app-categories-list-container a {
     text-decoration: none;
-    color: #000000;
+    color: #FFFFFF;
     font-size: 20px;
 }
-li a:hover {
-    text-decoration: underline;
-    text-decoration-color: #404040;
-}
-ul.genrelist li:nth-child(odd) .list-item-content {
-    background-color: #C6C6C6;
+.app-categories-list-container a:hover {
+    font-size: 20px;
 }
 
-ul.categorylist{
-    padding-bottom: 10px;
+.category {
+    min-width: 250px;
+    height: 100px;
 }
-
-li:nth-child(odd) ul li:nth-child(odd) .list-item-content  { background-color:#FFFFFF; }
-li:nth-child(odd) ul li:nth-child(even) .list-item-content { background-color:#C6C6C6; }
-li:nth-child(even) ul li:nth-child(odd) .list-item-content  { background-color:#C6C6C6; }
-li:nth-child(even) ul li:nth-child(even) .list-item-content { background-color:#FFFFFF; }
 
 .expand-collapse-container {
     width: 10px;
@@ -197,3 +222,79 @@ i.collapsed-icon {
 
 
 /*APP CONTENT - END*/
+
+/* MEDIA QUERIES*/
+@media screen and (min-width: 1500px)
+{
+    .header-content, .app-categories-list-container{
+        padding: 0 60px;
+    }
+}
+/*MEDIA QUERIES*/
+
+/*COLOR PALLETTE START - we can also define array in global object with HEX values for colors
+and add css style to each category box*/
+.color-0 {
+    background-color: #5BC8AC;
+}
+.color-1 {
+    background-color: #E57373;
+}
+.color-2 {
+    background-color:#F06292;
+}
+.color-3 {
+    background-color:#7B1FA2;
+}
+.color-4 {
+    background-color: #3F51B5;
+}
+.color-5 {
+    background-color: #5E35B1;
+}
+.color-6 {
+    background-color: #039BE5;
+}
+.color-7 {
+    background-color: #00ACC1;
+}
+.color-8 {
+    background-color: #00897B;
+}
+.color-9 {
+    background-color: #388E3C;
+}   
+.color-10 {
+    background-color: #558B2F;
+}
+.color-11 {
+    background-color: #757575;
+}
+.color-12 {
+    background-color: #546E7A;
+}
+.color-13 {
+    background-color: #F98866;
+}
+.color-14 {
+    background-color: #FF420E;
+}
+.color-15 {
+    background-color: #80BD9E;
+}
+.color-16 {
+    background-color: #90AFC5;
+}
+.color-17 {
+    background-color: #2A3132;
+}
+.color-18 {
+    background-color: #66A5AD;
+}
+.color-19 {
+    background-color: #2C7873;
+}
+.color-20 {
+    background-color: #375E97;
+}
+/*COLLERE PALLETE END*/
