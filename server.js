@@ -1,7 +1,11 @@
 const path = require('path');
+const http = require('http');
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const index = path.join(__dirname + '/index.html');
+const externalSite = 'http://whatsonnetflix.com/netflix-hacks/the-netflix-id-bible-every-category-on-netflix/';
+
 
 app.use('/styles', express.static( __dirname + '/styles' ));
 app.use('/src', express.static( __dirname + '/src' ));
@@ -24,7 +28,25 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/index.html'));
+    res.sendFile(index);
+});
+
+app.get('/api/getCategories', function (request,response) {
+    let bufferData = '';
+    try {
+        http.get(externalSite, function (res) {
+            res.on('data', function (data) {
+                bufferData += data;
+                
+            });
+            res.on('end', function (data) {
+                response.send(bufferData);                
+            })
+        });   
+    }
+    catch(Exception){
+        response.status(500).send(Exception);
+    }
 });
 
 app.listen(3000, function () { console.log('Listening on ' + 3000) });
