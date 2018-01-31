@@ -34,7 +34,7 @@ These instructions will get you a copy of the project up and running on your loc
     
 4. Now we can access the local development setup using below URL
 
-    http://localhost//30000
+    http://localhost:30000
     
 Note: This app can also used as static web page but we need to have the hidden category list from another website over the internet. Since we can not get the hidden categories from the above blog, as static website is giving CORS errors. To overcome this, we need light weight server running which then our UI code consume the api to retrieve the website response and parse the categories in UI code.
 
