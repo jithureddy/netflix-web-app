@@ -155,6 +155,7 @@ header {
     height: 35px;
     width: 45px;
     position: absolute;
+    top: 13px;
 }
 /*HEADER - END*/
 
@@ -180,11 +181,13 @@ section.app-section {
     font-weight: 600;
     transition: opacity ease-in .5s;
     opacity: 0;
+    height: 0;
 }
 .no-records-found-container.show-no-categories-message {
     opacity: 1;
     margin-top: 10%;
     text-align: center;
+    height: 100%;
 }
 .app-categories-list-container  ul {
     list-style: none;
@@ -263,6 +266,15 @@ i.collapsed-icon {
     .category {
         padding: 10px 40px 10px 40px;
         min-width: 100px;
+    }
+}
+
+@-moz-document url-prefix() {
+    .header-content .app-header-title {
+        -moz-transform: scale(.5);
+        height: 120px;
+        margin-top: -38px;
+        margin-left: -88px;
     }
 }
 /*MEDIA QUERIES*/
@@ -352,13 +364,13 @@ and add css style to each category box*/
 
 /* LOAD BAR CSS START*/
 .app-load-bar-container {
-    padding: 0 4%;
+    padding: 0 3.5%;
 }
 .dummy-category-background {
     background: transparent;
     border-color: #e5e6e9 #dfe0e4 #d0d1d5;
     border-radius: 5px;
-    padding: 12px;
+    padding: 12px 12px 12px 0;
     margin: 0 auto;
     width: 100%;
     min-height: 70px;

@@ -115,6 +115,7 @@
      */
     function filterCategoryList(filterText) {
         var filteredList = [];
+        //Need to remove trailing spaces for accurate filter.
         filterText = filterText.trim();
         if (filterText && typeof filterText == 'string' && filterText.length > 0) {
             var filteredList = NETFLIX.filterList(filterText);
