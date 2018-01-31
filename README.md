@@ -36,7 +36,7 @@ These instructions will get you a copy of the project up and running on your loc
 
     http://localhost:30000
     
-Note: This app can also used as static web page but we need to have the hidden category list from another website over the internet. Since we can not get the hidden categories from the above blog, as static website is giving CORS errors. To overcome this, we need light weight server running which then our UI code consume the api to retrieve the website response and parse the categories in UI code.
+Note: This app can also used as static web page but we need to have the hidden category list from another website over the internet. Since we can not get the hidden categories from the above blog, as static website is giving CORS errors. To overcome this, we need light weight server running with the api exposed for the data. Then our UI code consume the api to retrieve the website response and parse the categories in frontend and stores in required format.
 
 ### Live Website
 
