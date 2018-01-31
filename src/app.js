@@ -267,7 +267,6 @@
     function registerFilterEvent() {
         var searchInputNode = getElementById('searchInput');
         searchInputNode.onkeyup = function (event) {
-            console.log(searchInputNode.value);
             filterCategoryList(searchInputNode.value);
         };
     }

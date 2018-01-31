@@ -429,6 +429,7 @@ and add css style to each category box*/
     transition: transform 0.2s;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
     vertical-align: middle;
+    cursor: pointer;
 }
 .scroll-top.hidden-scroll {
     transform: scale(0);
