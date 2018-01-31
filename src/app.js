@@ -12,6 +12,7 @@
     var TYPE_CATEGORY = 'category';
     var LIST = 'list';
     var CARD_CSS_CLASS = 'card';
+    var MIN_SCROLL_TO_DISPLAY_LINK = 100;
 
     /**
      * @name loadCategories
@@ -271,7 +272,29 @@
         };
     }
 
+    /**
+     * @name registerScrollToTop
+     * @description This function register correspanding events for scroll to enable scroll top link at the bottom
+     * and also scroll to event for the button.
+     */
+    function registerScrollToTop() {
+        var appSectionNode = getElementById('appSection');
+        var scrollTopNode = getElementById("scrollTop")
+        appSectionNode.onscroll = function () {
+            if (appSectionNode.scrollTop > MIN_SCROLL_TO_DISPLAY_LINK) {
+                scrollTopNode.classList.remove('hidden-scroll');
+            } else {
+                scrollTopNode.classList.add('hidden-scroll');
+            }
+        }
+        scrollTopNode.onclick = function (event) {
+            appSectionNode.scrollTop = 0;
+        }
+    }
+
     registerFilterEvent();
+
+    registerScrollToTop();
 
     // Create the global object that all shared data goes on
     window.NETFLIX = {

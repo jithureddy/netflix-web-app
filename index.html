@@ -13,7 +13,9 @@
     <header>
         <div class="header-content row align-center space-between">
             <div class="app-netflix-logo row">
-                <a href="/"><div class="app-header-title"></div></a>
+                <a href="/">
+                    <div class="app-header-title"></div>
+                </a>
             </div>
             <div class="app-search-container">
                 <div class="app-search-input-container row align-center">
@@ -23,17 +25,17 @@
             </div>
         </div>
     </header>
-    <section class="app-section column">
+    <section id="appSection" class="app-section column">
         <div id="appCategoriesList" class="app-categories-list-container margin-auto-center margin-top-20 margin-bottom-20">
-            
+
         </div>
         <div id="noRecordsFoundMessage" class="no-records-found-container">
-                No categories found...!
+            No categories found...!
         </div>
         <div id="appLoadBar" class="app-load-bar-container">
             <div class="dummy-category-background column">
                 <div class="dummy-category dummy-category-title"></div>
-                <div  class="row">
+                <div class="row">
                     <div class="dummy-category dummy-category-dimensions"></div>
                     <div class="dummy-category dummy-category-dimensions"></div>
                     <div class="dummy-category dummy-category-dimensions"></div>
@@ -42,20 +44,24 @@
                 </div>
             </div>
             <div class="dummy-category-background column">
-                    <div class="dummy-category dummy-category-title"></div>
-                    <div  class="row">
-                        <div class="dummy-category dummy-category-dimensions"></div>
-                        <div class="dummy-category dummy-category-dimensions"></div>
-                        <div class="dummy-category dummy-category-dimensions"></div>
-                        <div class="dummy-category dummy-category-dimensions"></div>
-                        <div class="dummy-category dummy-category-dimensions"></div>
-                    </div>
+                <div class="dummy-category dummy-category-title"></div>
+                <div class="row">
+                    <div class="dummy-category dummy-category-dimensions"></div>
+                    <div class="dummy-category dummy-category-dimensions"></div>
+                    <div class="dummy-category dummy-category-dimensions"></div>
+                    <div class="dummy-category dummy-category-dimensions"></div>
+                    <div class="dummy-category dummy-category-dimensions"></div>
                 </div>
+            </div>
         </div>
+
     </section>
     <footer>
 
     </footer>
+    <div id="scrollTop" class="scroll-top hidden-scroll">
+        <i class="scroll-top-icon"> </i>
+    </div>
     <script src="src/app.js"></script>
     <script src="src/app-utils.js"></script>
     <script src="src/category-list.js"></script>
