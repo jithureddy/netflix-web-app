@@ -1,5 +1,5 @@
 # netflix-web-app
-Netflix web app is a simple app which shows the hidden categories on Netflix, snd also give an iterface to users to filter for a genre or category and then see the results.
+This Netflix web app is a simple app which shows the hidden categories on Netflix, and also gives an interface to users to filter for a genre or category and then see the results.
 
 The genres and categories list are fetched from http://whatsonnetflix.com/netflix-hacks/the-netflix-id-bible-every-category-on-netflix/
 
