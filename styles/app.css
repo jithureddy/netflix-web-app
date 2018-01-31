@@ -140,7 +140,7 @@ header {
 }
 .search-input {
     height: 50px;
-    padding-left: 40px;
+    padding-left: 50px;
     color: rgba(0,0,0,.54);
     border: none;
     outline: none;
@@ -153,7 +153,7 @@ header {
     background-repeat: no-repeat;
     display: inline-block;
     height: 35px;
-    width: 35px;
+    width: 45px;
     position: absolute;
 }
 /*HEADER - END*/
@@ -181,7 +181,7 @@ section.app-section {
     transition: opacity ease-in .5s;
     opacity: 0;
 }
-.show-no-categories-message .no-records-found-container {
+.no-records-found-container.show-no-categories-message {
     opacity: 1;
     margin-top: 10%;
     text-align: center;
@@ -224,6 +224,10 @@ section.app-section {
     margin-bottom: 5px;
 }
 
+.category .list-item-content {
+    padding: 0;
+}
+
 .expand-collapse-container {
     width: 10px;
     margin-right: 10px;
@@ -253,6 +257,12 @@ i.collapsed-icon {
 @media screen and (min-width: 1400px) {
     .category {
         min-width: 10%;
+    }
+}
+@media screen and (max-width: 900px) {
+    .category {
+        padding: 10px 40px 10px 40px;
+        min-width: 100px;
     }
 }
 /*MEDIA QUERIES*/
@@ -340,7 +350,7 @@ and add css style to each category box*/
 }
 /*COLLERE PALLETE END*/
 
-/* LOAD BAR CSS*/
+/* LOAD BAR CSS START*/
 .app-load-bar-container {
     padding: 0 4%;
 }
@@ -390,4 +400,4 @@ and add css style to each category box*/
     height: 25px;
     margin-bottom: 20px;
 }
-/* LOAD BAR CSS*/
+/* LOAD BAR CSS END*/

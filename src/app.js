@@ -31,7 +31,7 @@
                 htmlObject.querySelectorAll('.wpb_wrapper p').forEach(function (data) {
                     if (data.innerHTML.indexOf(' = ') != -1) {
                         var cats = data.innerText.split(' = ');
-                        //Here I have hardcoded the codes for genre so that I can form proper object to render the UI
+                        //Here I have hardcoded the codes for genres so that I can form proper object to render the UI.
                         if (NETFLIX.GENRE_CODES.indexOf(cats[0]) > -1) {
                             count = 0;
                             genre = {};
@@ -46,8 +46,8 @@
                 });
                 if (callback && typeof callback === 'function') {
                     hideLoadingBar();
-                    NETFLIX.categories = genersList;
-                    callback(genersList);
+                    NETFLIX.categories = NETFLIX.sortCategories(genersList);
+                    callback(NETFLIX.categories);
                 }
             }
         };
@@ -95,7 +95,7 @@
     function renderCategoryList(categories) {
         var categoryListContainer = getElementById('appCategoriesList');
         if (categories && categories.length > 0) {
-            categoryListContainer.classList.remove('show-no-categories-message');
+            hideNoRecordsFoundMessage();
             var listNode = getCategoriesListNode([TYPE_GENRE + LIST]);
             categories.forEach(function (category) {
                 var listItemNode = getLisItemNode(category, TYPE_GENRE);
@@ -104,7 +104,7 @@
             categoryListContainer.appendChild(listNode);
         }
         else {
-            categoryListContainer.classList.add('show-no-categories-message');
+            showNoRecordsFoundMessage();
         }
     }
 
@@ -114,12 +114,21 @@
      * @param {string} filterText 
      */
     function filterCategoryList(filterText) {
-        //put validation for filter text and type 
-        //call the app utils filter to get the results and re render the categoryList
-        //Also consider clearing the category if the previous filter search happens
-        //var filteredCategories = NETFLIX.filterList(filterText, filterType);
-        //renderCategoryList(filteredCategories);
-        //TODO
+        var filteredList = [];
+        filterText = filterText.trim();
+        if (filterText && typeof filterText == 'string' && filterText.length > 0) {
+            var filteredList = NETFLIX.filterList(filterText);
+        }
+        else {
+            filteredList = NETFLIX.categories;
+        }
+
+        //Here need to remove the children of container parent to render new list
+        var categoryListContainer = getElementById('appCategoriesList');
+        categoryListContainer.innerHTML = '';
+        showLoadingBar();
+        renderCategoryList(filteredList);
+        hideLoadingBar();
     }
 
     /**
@@ -189,7 +198,7 @@
      * @param {DOM element} node 
      * @param {array} classes 
      */
-    
+
     function addClassesToNode(node, classes) {
         if (classes && classes.length > 0) {
             classes.forEach(function (cssClass) {
@@ -211,7 +220,7 @@
         linkNode.classList.add('category-genre-link');
         linkNode.appendChild(linkText);
         return linkNode;
-    }   
+    }
 
     /**
      * @name hideLoadingBar
@@ -229,6 +238,24 @@
     function showLoadingBar() {
         var loadingBarNode = getElementById('appLoadBar');
         loadingBarNode.classList.remove('hide-loading-bar');
+    }
+
+    /**
+     * @name showNoRecordsFoundMessage
+     * @description This function add css class to show the no records found message
+     */
+    function showNoRecordsFoundMessage() {
+        var noRecordsFoundMessageNode = getElementById('noRecordsFoundMessage');
+        noRecordsFoundMessageNode.classList.add('show-no-categories-message');
+    }
+
+    /**
+     * @name hideNoRecordsFoundMessage
+     * @description This funciton removes the css class to remove the no record found message
+     */
+    function hideNoRecordsFoundMessage() {
+        var noRecordsFoundMessageNode = getElementById('noRecordsFoundMessage');
+        noRecordsFoundMessageNode.classList.remove('show-no-categories-message');
     }
 
     /**
